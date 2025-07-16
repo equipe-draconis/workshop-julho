@@ -4,17 +4,13 @@ Este projeto demonstra como controlar um servo motor usando um potenciômetro, c
 
 ---
 
-## 📦 Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
-├── include/
-│ └── controle_servo.h # Cabeçalho com declarações das funções
-├── src/
-│ ├── controle_servo.cpp # Implementação da lógica de controle do servo
-│ └── main.cpp # Função principal setup() e loop()
-└── platformio.ini # Configuração do ambiente PlatformIO
+- `include/controle_servo.h` — Cabeçalho com declarações das funções
+- `src/controle_servo.cpp` — Implementação da lógica de controle do servo
+- `src/main.cpp` — Função principal com `setup()` e `loop()`
+- `platformio.ini` — Configuração do PlatformIO
 
-
----
 
 ## 🔧 Funcionalidade
 
