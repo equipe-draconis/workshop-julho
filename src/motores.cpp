@@ -22,7 +22,7 @@ void moverServoEPiscarLED(int angulo) {
 void atualizarServoComPotenciometro() {
   int leitura = analogRead(pinoPot);          // Leitura: 0–1023
   int angulo = map(leitura, 0, 1023, 0, 180); // Mapeia para 0–180 graus
-  servo.write(angulo);                        // Move servo
+  moverServoEPiscarLED(angulo);                     // Move servo
   delay(15);                                  // Delay para suavizar movimento
 }
 
