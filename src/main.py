@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 import collections
 
 # === CONFIGURAÇÕES ===
-PORTA = '/dev/ttyUSB0'
+PORTA = '/dev/ttyUSB1'
 BAUD = 9600
 INTERVALO = 50          # ms entre atualizações
 TAM_JANELA = 100        # Número de amostras exibidas
@@ -21,9 +21,10 @@ except Exception as e:
 dados1 = collections.deque([0] * TAM_JANELA, maxlen=TAM_JANELA)
 dados2 = collections.deque([0] * TAM_JANELA, maxlen=TAM_JANELA)
 
+
 # === CONFIGURAÇÃO DO PLOT ===
 plt.style.use('ggplot')
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
+fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(10, 6), sharex=True)
 
 # Gráfico 1
 linha1, = ax1.plot(dados1, color='blue', label='Sensor 1')
@@ -37,6 +38,7 @@ ax2.set_ylim(0, 200)
 ax2.set_ylabel("Sensor 2")
 ax2.set_xlabel("Tempo (pontos)")
 ax2.legend(loc='upper right')
+
 
 fig.suptitle("Leitura de 2 Variáveis da Porta Serial")
 
