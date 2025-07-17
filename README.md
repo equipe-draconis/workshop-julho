@@ -1,70 +1,25 @@
-# Controle de Servo com Potenciômetro — Projeto Arduino Modularizado
+# Braço Robótico com 2 Graus de Liberdade - Cinemática Direta no Arduino
 
-Este projeto demonstra como controlar um servo motor usando um potenciômetro, com o código organizado de forma modular em arquivos `.h` e `.cpp`, seguindo boas práticas de desenvolvimento com o PlatformIO.
+Este projeto implementa a cinemática direta de um braço robótico com dois servo motores controlados por potenciômetros, utilizando Arduino.
 
----
+## 🎯 Objetivo
 
-## 📁 Estrutura do Projeto
-
-- `include/controle_servo.h` — Cabeçalho com declarações das funções
-- `src/controle_servo.cpp` — Implementação da lógica de controle do servo
-- `src/main.cpp` — Função principal com `setup()` e `loop()`
-- `platformio.ini` — Configuração do PlatformIO
-
-
-## 🔧 Funcionalidade
-
-- O projeto lê a posição de um **potenciômetro** conectado ao pino **A0**.
-- Mapeia essa leitura analógica (0–1023) para um ângulo de **0 a 180 graus**.
-- Um **servo motor** conectado ao pino **9** é movimentado suavemente de acordo com essa leitura.
-- Toda a lógica de controle está encapsulada em funções separadas para melhor organização e reutilização.
+Calcular a posição (x, y) da extremidade (efetuador) de um braço robótico com dois elos (L1 e L2), controlado por dois ângulos (`θ1` e `θ2`) medidos via potenciômetros.
 
 ---
 
-## 🔌 Conexões
+## 🤖 Modelo Geométrico
 
-| Componente     | Pino do Arduino |
-|----------------|-----------------|
-| Servo Motor    | D9 (PWM)        |
-| Potenciômetro  | A0              |
-| VCC Potenciómetro | 5V          |
-| GND Potenciómetro | GND         |
+O braço robótico possui dois segmentos (elos) de comprimento conhecido:
 
----
+- Elo 1: comprimento `L1`
+- Elo 2: comprimento `L2`
+- Ângulos:
+  - `θ1`: ângulo do primeiro servo em relação ao eixo horizontal
+  - `θ2`: ângulo relativo entre o primeiro e o segundo elo
 
+A posição da extremidade do braço é dada pelas equações da cinemática direta:
 
-
-## 📁 Detalhes dos Arquivos
-
-### `include/controle_servo.h`
-Declara duas funções:
-- `inicializarServo()` – Configura o servo.
-- `atualizarServoComPotenciometro()` – Lê o potenciômetro e move o servo.
-
-### `src/controle_servo.cpp`
-Implementa a lógica de:
-- Leitura analógica.
-- Conversão para ângulo.
-- Escrita no servo motor.
-- Delay suave para evitar jitter.
-
-### `src/main.cpp`
-Contém o `setup()` e o `loop()` que apenas chamam as funções do módulo para manter o código principal limpo e simples.
-
----
-
-## ⚙️ Requisitos
-
-- **Arduino Uno** (ou outro compatível)
-- **Servo motor padrão (180°)**
-- **Potenciômetro linear**
-- **PlatformIO** instalado no VS Code ou outro editor compatível
-
----
-
-## ▶️ Como Compilar e Enviar
-
-1. Instale o [PlatformIO](https://platformio.org/install).
-2. Clone este repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/projeto-servo-potenciometro.git
+```math
+x = L1 * cos(θ1) + L2 * cos(θ1 + θ2)
+y = L1 * sin(θ1) + L2 * sin(θ1 + θ2)
