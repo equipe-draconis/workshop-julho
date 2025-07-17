@@ -32,6 +32,8 @@ Este projeto demonstra como controlar um servo motor usando um potenciômetro, c
 
 ---
 
+
+
 ## 📁 Detalhes dos Arquivos
 
 ### `include/controle_servo.h`
